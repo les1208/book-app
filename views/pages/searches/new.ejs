@@ -1,41 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>seached books
-  </title>
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-  <header>
 
-  </header>
-  <body>
-    <div>
-      <% books.forEach( book => { %>
-      <div>
+<%- include('../partials/head.ejs') %>
+
+<body>
+  <%- include('../partials/header.ejs') %>
+  <nav>
+    <%- include('../partials/navbar') %>
+  </nav>
+
+  <main>
+
+    <% books.forEach( book => { %>
+    <div class="container">
+      <div class="title">
         <%= book.title %>
       </div> 
-      <img src=<%= book.img %> alt=""> 
-      <h3>
-        <%= book.author %>
+      <img src=<%= book.image_url %> alt=""> 
+      <h3 class="author">
+       By: <%= book.author %>
       </h3>
-      <p>
-        <%= book.desc %>
+      <p class="desc">
+        <%= book.descrip %>
       </p>
-      <p>
+      <p class="isbn">
         <%= book.isbn %>
       </p>
-      <p>
-        <%= book.amount %>
+      <p class="amount">
+        $ <%= book.amount %>
       </p>
-      <% })  %>
-    </div>
-  </body>
-  <footer>
+      <form method="POST" action="/save">
+        <input type="hidden" name="title" value="<%= book.title %>" />
+        <input type="hidden" name="image_url" value="<%= book.image_url %>" />
+        <input type="hidden" name="author" value="<%= book.author %>" />
+        <input type="hidden" name="descrip" value="<%= book.descrip %>" />
+        <input type="hidden" name="isbn" value="<%= book.isbn %>" />
+        <input type="hidden" name="amount" value="<%= book.amount %>" />
 
-  </footer>
-  <script src="/js/app.js"></script>
+
+        <button type="submit">Save Book</button>
+      </form>
+      
+    </div>
+      <% })  %>
+
+  </main>
+  <%- include('../partials/footer.ejs') %>
+
+
 </body>
 </html>

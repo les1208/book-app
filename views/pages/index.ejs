@@ -1,22 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Person</title>
-  <link rel="stylesheet" href="/public/css/style.css">
+  <%- include('./partials/head.ejs') %>
 </head>
 <body>
-  <header>
-    <h1>Find books</h1>
-  </header>
-  <main>
-    
-  </main>
-  <footer>
-    &copy; 2020
-  </footer>
 
+  <nav>
+    <%- include('./partials/navbar') %>
+  </nav>
+
+  <main>
+
+  <%- include('./partials/header.ejs') %>
+  <main>
   
+      <% book_app.forEach( book => { %>
+        <div class="container">
+          <div class="title">
+            <%= book.title %>
+          </div> 
+          <img src=<%= book.image_url %> alt=""> 
+          <h3 class="author">
+           By:<%= book.author %>
+          </h3>
+          <p class="desc">
+            <%= book.descrip %>
+          </p>
+          <p class="isbn">
+            <%= book.isbn %>
+          </p>
+          <p class="amount">
+            $<%= book.amount %>
+          </p>
+          </div>
+          <% })  %>
+
+  </main>
+  <%- include('./partials/footer.ejs') %>
 </body>
+
 </html>
